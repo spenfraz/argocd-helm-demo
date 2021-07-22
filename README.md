@@ -3,6 +3,7 @@
 ### ArgoCD demo using https://github.com/spenfraz/gke-rmq-prometheus-grafana-perftest ###
 
 ### NOTE: replace all instances of ```spenfraz``` with your github email/username.
+- ```argo-app.yaml(spec.source.repoURL(x2))```
 - ```argo-start.yaml(argo-cd ConfigMap)```
 - ```ssh-keygen public/private key pair creation step```
 
