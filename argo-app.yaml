@@ -1,0 +1,38 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: rmq-chart
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: helm/rabbitmq-ha/
+    repoURL: git@github.com:spenfraz/gke-rmq-prometheus-grafana-perftest
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: prometheus-operator-chart
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: helm/kube-prometheus-stack/
+    repoURL: git@github.com:spenfraz/gke-rmq-prometheus-grafana-perftest
+  syncPolicy:
+    automated: {}
